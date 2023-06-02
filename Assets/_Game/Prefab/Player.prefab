@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1235846933183286709}
   - component: {fileID: 6079859619113784562}
-  - component: {fileID: 6079859619113784563}
+  - component: {fileID: 3897675618314013139}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -50,7 +50,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6079859619113784563
+--- !u!114 &3897675618314013139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,6 +63,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  CharacterAnimation: {fileID: 0}
+  CharacterMaterial: {fileID: 0}
+  PaintMaterial: {fileID: 0}
+  listClothesMaterials:
+  - {fileID: 2100000, guid: 12f05f20429cd8a44ae5451f7786034c, type: 2}
+  - {fileID: 2100000, guid: aeb5a3547164b23478ffebdd360e6d41, type: 2}
+  - {fileID: 2100000, guid: 77627cc7fc361c3428449deddf018562, type: 2}
+  - {fileID: 2100000, guid: f561edc621935a548b0c1a3741196577, type: 2}
+  - {fileID: 2100000, guid: b0123b4ee0af21447b62dc9046b82960, type: 2}
+  - {fileID: 2100000, guid: f14327898c6bd4b429d303b2f2be9bb0, type: 2}
+  - {fileID: 2100000, guid: 057e399a4ddd823438f77b51cfb3eedc, type: 2}
+  - {fileID: 2100000, guid: 66fb3bf2a31ab984c93c62b7fc2cfb24, type: 2}
+  - {fileID: 2100000, guid: 5d62649344f2d294c8c67487e38c51d3, type: 2}
+  currentAnimType: 0
   variableJoystick: {fileID: 0}
   rb: {fileID: 6079859619113784562}
 --- !u!1001 &6492470983549452421
@@ -72,6 +86,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1235846933183286709}
     m_Modifications:
+    - target: {fileID: -6057140222963153312, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 552208d5f86ddd34481516cae8d95016, type: 2}
     - target: {fileID: -4216859302048453862, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
       propertyPath: m_RootOrder
       value: 0
