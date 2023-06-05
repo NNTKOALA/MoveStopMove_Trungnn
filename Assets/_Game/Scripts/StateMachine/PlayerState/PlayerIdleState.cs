@@ -29,5 +29,10 @@ public class PLayerIdleState : State
         {
             player.stateMachine.ChangeState(player.RunState);
         }
+
+        if (player.FindClosetEnemy() != null)
+        {
+            player.stateMachine.ChangeState(player.AttackState);
+        }
     }
 }

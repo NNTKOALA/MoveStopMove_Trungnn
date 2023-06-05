@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bot : MonoBehaviour
+public class Bot : Character
 {
+    private float yPos;
+    private Vector3 startPos;
+
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
+    {
+        base.Start();
+        startPos = transform.position;
+    }
+
+    // Update is called once per frame
+    protected override void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetYPosition(float yPosition)
     {
-        
+        yPos = yPosition;
     }
 }

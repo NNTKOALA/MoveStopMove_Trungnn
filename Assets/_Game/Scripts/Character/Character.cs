@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] protected Collider[] targetInRange;
+
     public enum AnimationType
     {
         Idle, Run, Attack, Dead, Win
@@ -13,8 +15,11 @@ public class Character : MonoBehaviour
     [SerializeField] SkinnedMeshRenderer CharacterMaterial;
     [SerializeField] SkinnedMeshRenderer PaintMaterial;
 
+    public LayerMask characterMask;
+    public float attackRange = 5;
     public List<Material> listClothesMaterials;
     public AnimationType currentAnimType = AnimationType.Idle;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -48,14 +53,51 @@ public class Character : MonoBehaviour
     {
         if (colorID < listClothesMaterials.Count)
         {
-            //CharacterMaterial.material = listClothesMaterials[colorID];
+            CharacterMaterial.material = listClothesMaterials[colorID];
             PaintMaterial.material = listClothesMaterials[colorID];
+        }
+    }
+
+    public Character FindClosetEnemy()
+    {
+        targetInRange = Physics.OverlapSphere(transform.position, attackRange, characterMask);
+        Collider nearestEnemy = null;
+        if (targetInRange.Length == 0)
+        {
+            return null;
+        }
+        else 
+        {
+            nearestEnemy = null;
+            float minimumDistance = Mathf.Infinity;
+
+            foreach (Collider enemy in targetInRange)
+            {
+                if (enemy == this.GetComponent<Collider>())
+                {
+                    continue;
+                }
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distance < minimumDistance)
+                {
+                    minimumDistance = distance;
+                    nearestEnemy = enemy;
+                }
+            }
+            if (nearestEnemy != null)
+            {
+                return nearestEnemy.GetComponent<Character>();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
     public void ThrowWeapon()
     {
-
+        Debug.Log("ThrowWeapon");
     }
 
     public void EndAttack()
