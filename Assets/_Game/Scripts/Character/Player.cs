@@ -12,7 +12,7 @@ public class Player : Character
     private Vector3 startPos;
     public Vector2 MoveDirection {  get; private set; }
 
-    public StateMachine stateMachine { get; private set; }
+    
     public PLayerIdleState IdleState { get; private set; }
     public PLayerRunState RunState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }

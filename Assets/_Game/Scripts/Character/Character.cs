@@ -14,7 +14,13 @@ public class Character : MonoBehaviour
     [SerializeField] protected Animator CharacterAnimation;
     [SerializeField] SkinnedMeshRenderer CharacterMaterial;
     [SerializeField] SkinnedMeshRenderer PaintMaterial;
+    [SerializeField] Transform weaponTranform;
+    [SerializeField] Transform weaponBase;
+    [SerializeField] Projecttitle projecttitlePrefab;
 
+    public StateMachine stateMachine { get; protected set; }
+
+    private GameObject weapon;
     public LayerMask characterMask;
     public float attackRange = 5;
     public List<Material> listClothesMaterials;
@@ -97,11 +103,33 @@ public class Character : MonoBehaviour
 
     public void ThrowWeapon()
     {
-        Debug.Log("ThrowWeapon");
+        //Debug.Log("ThrowWeapon");
+        //GameObject weaponObject = GameObject.Instantiate(weapon);
+        //weaponObject.transform.position = weaponBase.transform.position;
+        //weaponObject.transform.rotation = weaponBase.transform.rotation;
+        ///*        weaponObject.GetComponent<WeaponController>().Shoot(targetContro);*/
+
+        //weaponBase.gameObject.SetActive(false);
     }
 
     public void EndAttack()
     {
+        weaponBase.gameObject.SetActive(true);
+    }
 
+    internal void ModifyStatsByWeapon(float attackRange, int damage)
+    {
+        
+    }
+
+    public void TakeDamage(Character damageDealer)
+    {
+        CharacterAnimation.SetTrigger("dead");
+    }
+
+    internal void SpawnProjectile(Vector3 position)
+    {
+        Projecttitle newProj = Instantiate(projecttitlePrefab, transform.position, Quaternion.identity);
+        newProj.SetupProjectile(FindClosetEnemy().transform.position, this, EWeaponType.Arrow);
     }
 }
