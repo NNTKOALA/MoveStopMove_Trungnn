@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Bot : Character
 {
+    [SerializeField] float patrolRadius = 7f;
+    public float PatrolRadius => patrolRadius;
+    public NavMeshAgent agent;
     public Rigidbody rb;
     private float yPos;
     private Vector3 startPos;
 
+
     public Vector2 MoveDirection { get; private set; }
+    public bool IsPause { get; set; }
 
     //public StateMachine stateMachine { get; private set; }
 
@@ -31,11 +37,27 @@ public class Bot : Character
     // Update is called once per frame
     protected override void Update()
     {
-        
+/*        if (IsPause)
+        {
+            agent.isStopped = true;
+            return;
+        }
+        else
+        {
+            agent.isStopped = false;
+        }*/
+        base.Update();
     }
 
     public void SetYPosition(float yPosition)
     {
         yPos = yPosition;
     }
+
+
+    public void SetDestination(Vector3 dest)
+    {
+        agent.SetDestination(dest);
+    }
+
 }

@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BotWinState : MonoBehaviour
+public class BotWinState : State
 {
-    // Start is called before the first frame update
-    void Start()
+    public BotWinState(Character character, Animator anim, string animString) : base(character, anim, animString)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        base.Enter();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void Tick()
+    {
+        base.Tick();
     }
 }

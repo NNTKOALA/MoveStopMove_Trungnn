@@ -1,9 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public static event EventHandler<OnAnyCharacterSpawnProjectileArgs> onAnyCharacterSpawnProjectile;
+    public class OnAnyCharacterSpawnProjectileArgs : EventArgs
+    {
+        public Vector3 destination;
+        public EWeaponType weaponType;
+    }
+
     [SerializeField] protected Collider[] targetInRange;
 
     public enum AnimationType
@@ -12,11 +20,13 @@ public class Character : MonoBehaviour
     }
     [SerializeField] protected float moveSpeed = 5;
     [SerializeField] protected Animator CharacterAnimation;
+    [SerializeField] protected Weapon currentWeapon;
     [SerializeField] SkinnedMeshRenderer CharacterMaterial;
     [SerializeField] SkinnedMeshRenderer PaintMaterial;
     [SerializeField] Transform weaponTranform;
     [SerializeField] Transform weaponBase;
     [SerializeField] Projecttitle projecttitlePrefab;
+
 
     public StateMachine stateMachine { get; protected set; }
 
@@ -26,16 +36,27 @@ public class Character : MonoBehaviour
     public List<Material> listClothesMaterials;
     public AnimationType currentAnimType = AnimationType.Idle;
 
+    protected CharacterPool pool;
+    public CharacterPool Pool
+    {
+        get => pool;
+        set => pool = value;
+    }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        SetClothes(Random.Range(0, 9));
+        SetClothes(UnityEngine.Random.Range(0, 9));
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+
+        if (stateMachine.CurrentState != null)
+        {
+            stateMachine.CurrentState.Tick();
+        }
     }
 
     public void ChangeAnim(AnimationType _type)
@@ -68,7 +89,7 @@ public class Character : MonoBehaviour
     {
         targetInRange = Physics.OverlapSphere(transform.position, attackRange, characterMask);
         Collider nearestEnemy = null;
-        if (targetInRange.Length == 0)
+        if (targetInRange.Length == 0)  
         {
             return null;
         }
@@ -112,9 +133,14 @@ public class Character : MonoBehaviour
         //weaponBase.gameObject.SetActive(false);
     }
 
+    public void LookAtTarget(Vector3 target)
+    {
+        transform.LookAt(target);
+    }
+
     public void EndAttack()
     {
-        weaponBase.gameObject.SetActive(true);
+
     }
 
     internal void ModifyStatsByWeapon(float attackRange, int damage)
@@ -129,7 +155,15 @@ public class Character : MonoBehaviour
 
     internal void SpawnProjectile(Vector3 position)
     {
-        Projecttitle newProj = Instantiate(projecttitlePrefab, transform.position, Quaternion.identity);
-        newProj.SetupProjectile(FindClosetEnemy().transform.position, this, EWeaponType.Arrow);
+        onAnyCharacterSpawnProjectile?.Invoke(this, new OnAnyCharacterSpawnProjectileArgs
+        {
+            destination = position,
+            weaponType = currentWeapon.getWeaponData().weaponType
+        });
+    }
+
+    public void ReleaseSelf()
+    {
+        pool.ReturnToPool(this);
     }
 }

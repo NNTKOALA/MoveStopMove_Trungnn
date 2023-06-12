@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] WeaponData weaponData;
+    public WeaponData getWeaponData() { return weaponData; }
 
     //[SerializeField] Mesh mesh;
     //public Mesh GetMesh() { return mesh; }

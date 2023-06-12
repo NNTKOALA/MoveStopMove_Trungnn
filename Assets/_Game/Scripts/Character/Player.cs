@@ -16,6 +16,8 @@ public class Player : Character
     public PLayerIdleState IdleState { get; private set; }
     public PLayerRunState RunState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
+    public PLayerDeadState DeadState { get; private set; }
+    public PlayerWinState WinState { get; private set; }
 
     // Start is called before the first frame update
     protected override void Start()
@@ -25,18 +27,19 @@ public class Player : Character
         IdleState = new PLayerIdleState(this, CharacterAnimation, "idle", this);
         RunState = new PLayerRunState(this, CharacterAnimation, "run", this);
         AttackState = new PlayerAttackState(this, CharacterAnimation, "attack", this);
+        DeadState = new PLayerDeadState(this, CharacterAnimation, "dead");
+        WinState = new PlayerWinState(this, CharacterAnimation, "win"); 
+
         stateMachine.Initialize(IdleState);
+
+
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
-        
-        if (stateMachine.CurrentState != null)
-        {
-            stateMachine.CurrentState.Tick();
-        }
+
         if (Input.GetMouseButton(0))
         {
             if (Mathf.Abs(variableJoystick.Horizontal) > 0.1f || Mathf.Abs(variableJoystick.Vertical) > 0.1f)

@@ -25,14 +25,13 @@ public class BotIdleState : State
     {
         base.Tick();
 
-        if (bot.MoveDirection.sqrMagnitude > 0.01f)
-        {
-            bot.stateMachine.ChangeState(bot.RunState);
-        }
-
         if (bot.FindClosetEnemy() != null)
         {
             bot.stateMachine.ChangeState(bot.AttackState);
+        }
+        else
+        {
+            bot.stateMachine.ChangeState(bot.RunState);
         }
     }
 }

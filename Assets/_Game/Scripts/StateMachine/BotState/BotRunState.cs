@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BotRunState : State
 {
@@ -14,6 +15,10 @@ public class BotRunState : State
     public override void Enter()
     {
         base.Enter();
+
+        Vector3 targetPos = bot.transform.position + Random.insideUnitSphere * bot.PatrolRadius;
+        targetPos.y = 0;
+        bot.SetDestination(targetPos);
     }
 
     public override void Exit()

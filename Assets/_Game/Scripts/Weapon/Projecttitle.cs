@@ -15,12 +15,12 @@ public class Projecttitle : MonoBehaviour
 
     private bool needSpin = true;
 
-/*    private ProjectilePool pool;
-    public ProjectilePool Pool
+    private ProjecttitlePool pool;
+    public ProjecttitlePool Pool
     {
         get => pool;
         set => pool = value;
-    }*/
+    }
 
     private Vector3 destination;
     private float progress;
@@ -87,9 +87,6 @@ public class Projecttitle : MonoBehaviour
         if (other.TryGetComponent<Character>(out var target))
         {
             if (target == dealer) return;
-
-            Debug.Log("trigger damage");
-            Debug.Log(target.gameObject.name + "    " + dealer.gameObject.name);
             target.TakeDamage(dealer);
             //AudioManager.Instance.PlayHitSound(other.transform.position);
             ReleaseSelf();
@@ -98,6 +95,6 @@ public class Projecttitle : MonoBehaviour
 
     public void ReleaseSelf()
     {
-        Destroy(gameObject);
+        pool.ReturnToPool(this);
     }
 }
