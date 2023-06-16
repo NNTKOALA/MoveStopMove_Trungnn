@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BotDeadState : State
 {
-    public BotDeadState(Character character, Animator anim, string animString) : base(character, anim, animString)
+    private Bot bot;
+    private float timer = 3f;
+
+    public BotDeadState(Character character, Animator anim, string animString, Bot bot) : base(character, anim, animString)
     {
+        this.bot = bot;
     }
 
     public override void Enter()
@@ -21,5 +25,15 @@ public class BotDeadState : State
     public override void Tick()
     {
         base.Tick();
+
+        timer -= Time.deltaTime;
+
+        if (timer < 0f)
+        {
+            if (bot != null)
+            {
+                bot.ReleaseSelf();
+            }
+        }
     }
 }

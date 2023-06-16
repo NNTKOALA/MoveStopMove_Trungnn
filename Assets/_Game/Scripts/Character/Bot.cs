@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Bot : Character
 {
     [SerializeField] float patrolRadius = 7f;
+    [SerializeField] private Transform attacker;
     public float PatrolRadius => patrolRadius;
     public NavMeshAgent agent;
     public Rigidbody rb;
@@ -22,6 +24,9 @@ public class Bot : Character
     public BotRunState RunState { get; private set; }
     public BotAttackState AttackState { get; private set; }
 
+    public BotDeadState DeadState { get; private set; }
+    public BotWinState WinState { get; private set; }
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -31,6 +36,8 @@ public class Bot : Character
         IdleState = new BotIdleState(this, CharacterAnimation, "idle", this);
         RunState = new BotRunState(this, CharacterAnimation, "run", this);
         AttackState = new BotAttackState(this, CharacterAnimation, "attack", this);
+        DeadState = new BotDeadState(this, CharacterAnimation, "dead", this);
+        WinState = new BotWinState(this, CharacterAnimation, "win");
         stateMachine.Initialize(IdleState);
     }
 
@@ -60,4 +67,18 @@ public class Bot : Character
         agent.SetDestination(dest);
     }
 
+    public override void ReleaseSelf()
+    {
+        base.ReleaseSelf();
+
+        //IndicatorManager.Instance.RemoveIndicator(this);
+    }
+
+    public override void TakeDamage(Character damageDealer)
+    {
+        base.TakeDamage(damageDealer);
+        //stateMachine.ChangeState(DeadState);
+        base.ChangeScale(damageDealer);
+
+    }
 }

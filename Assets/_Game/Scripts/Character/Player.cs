@@ -45,15 +45,15 @@ public class Player : Character
             if (Mathf.Abs(variableJoystick.Horizontal) > 0.1f || Mathf.Abs(variableJoystick.Vertical) > 0.1f)
             {
                 Quaternion newRotation = Quaternion.LookRotation(new Vector3(variableJoystick.Horizontal, 0f, variableJoystick.Vertical));
-                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 30f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.fixedDeltaTime * 30f);
             }
 
             MoveDirection = new Vector2(variableJoystick.Horizontal, variableJoystick.Vertical);
             
             this.transform.position = new Vector3(this.transform.position.x + variableJoystick.Horizontal * moveSpeed * Time.deltaTime,
-                yPos, this.transform.position.z + variableJoystick.Vertical * moveSpeed * Time.deltaTime);
+                yPos, this.transform.position.z + variableJoystick.Vertical * moveSpeed * Time.fixedDeltaTime);
         }
-        else
+        else  
         {
             MoveDirection = Vector2.zero;
         }
@@ -64,4 +64,10 @@ public class Player : Character
         yPos = yPosition;
     }
 
+    public override void TakeDamage(Character damageDealer)
+    {
+        base.TakeDamage(damageDealer);
+        //stateMachine.ChangeState(DeadState);
+        base.ChangeScale(damageDealer);        
+    }
 }

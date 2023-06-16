@@ -48,9 +48,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        QualitySettings.vSyncCount = 1;
+        Application.targetFrameRate = -1;
+    }
+
     private void Update()
     {
-        if (!isPlaying) return;
+        //if (!isPlaying) return;
 
         spawnTimer -= Time.deltaTime;
 
@@ -144,4 +150,5 @@ public class GameManager : MonoBehaviour
         data.starAmt = starCount;
         data.playerName = playerName;
     }*/
+
 }

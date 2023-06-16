@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector3 currentOffsetPosition;
     private void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position + currentOffsetPosition, speedFollow * Time.deltaTime);
-        transform.LookAt(target.position + currentOffsetTarget);
+        transform.position = Vector3.Lerp(transform.position, target.position + currentOffsetPosition, speedFollow * Time.fixedDeltaTime);
+        //transform.LookAt(target.position + currentOffsetTarget);
     }
 }

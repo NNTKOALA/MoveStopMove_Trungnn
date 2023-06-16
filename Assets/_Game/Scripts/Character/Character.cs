@@ -18,7 +18,9 @@ public class Character : MonoBehaviour
     {
         Idle, Run, Attack, Dead, Win
     }
-    [SerializeField] protected float moveSpeed = 5;
+    [SerializeField] protected float moveSpeed = 15;
+    [SerializeField] protected float characterScale = 0.05f;
+    [SerializeField] protected int characterLevel = 1;
     [SerializeField] protected Animator CharacterAnimation;
     [SerializeField] protected Weapon currentWeapon;
     [SerializeField] SkinnedMeshRenderer CharacterMaterial;
@@ -148,9 +150,9 @@ public class Character : MonoBehaviour
         
     }
 
-    public void TakeDamage(Character damageDealer)
+    public virtual void TakeDamage(Character damageDealer)
     {
-        CharacterAnimation.SetTrigger("dead");
+
     }
 
     internal void SpawnProjectile(Vector3 position)
@@ -162,8 +164,13 @@ public class Character : MonoBehaviour
         });
     }
 
-    public void ReleaseSelf()
+    public virtual void ReleaseSelf()
     {
         pool.ReturnToPool(this);
+    }
+
+    public void ChangeScale(Character damageDealer)
+    {
+        damageDealer.transform.localScale += Vector3.one * characterLevel * characterScale;
     }
 }

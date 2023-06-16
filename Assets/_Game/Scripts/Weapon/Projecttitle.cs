@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projecttitle : MonoBehaviour
 {
-    [SerializeField] float speed = 0.2f;
+    [SerializeField] float speed = 0.001f;
     [SerializeField] EWeaponType weaponType;
     [SerializeField] GameObject weaponModel;
 
@@ -76,7 +76,7 @@ public class Projecttitle : MonoBehaviour
             weaponModel.transform.Rotate(0f, 5f, 0f);
         }
 
-        if (progress > 1.3f)
+        if (progress > 1f)
         {
             ReleaseSelf();
         }
