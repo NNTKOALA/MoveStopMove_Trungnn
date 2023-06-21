@@ -173,4 +173,9 @@ public class Character : MonoBehaviour
     {
         damageDealer.transform.localScale += Vector3.one * characterLevel * characterScale;
     }
+
+    public virtual void OnNewGame()
+    {
+        
+    }
 }

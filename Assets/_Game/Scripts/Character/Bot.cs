@@ -39,12 +39,13 @@ public class Bot : Character
         DeadState = new BotDeadState(this, CharacterAnimation, "dead", this);
         WinState = new BotWinState(this, CharacterAnimation, "win");
         stateMachine.Initialize(IdleState);
+        IsPause = true;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-/*        if (IsPause)
+        if (IsPause)
         {
             agent.isStopped = true;
             return;
@@ -52,7 +53,7 @@ public class Bot : Character
         else
         {
             agent.isStopped = false;
-        }*/
+        }
         base.Update();
     }
 
@@ -77,7 +78,7 @@ public class Bot : Character
     public override void TakeDamage(Character damageDealer)
     {
         base.TakeDamage(damageDealer);
-        //stateMachine.ChangeState(DeadState);
+        stateMachine.ChangeState(DeadState);
         base.ChangeScale(damageDealer);
 
     }

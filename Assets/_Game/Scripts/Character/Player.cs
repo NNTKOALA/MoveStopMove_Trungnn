@@ -67,7 +67,14 @@ public class Player : Character
     public override void TakeDamage(Character damageDealer)
     {
         base.TakeDamage(damageDealer);
-        //stateMachine.ChangeState(DeadState);
+        stateMachine.ChangeState(DeadState);
         base.ChangeScale(damageDealer);        
+    }
+
+    public override void OnNewGame()
+    {
+        base.OnNewGame();
+        transform.position = startPos;
+        stateMachine.ChangeState(IdleState);
     }
 }

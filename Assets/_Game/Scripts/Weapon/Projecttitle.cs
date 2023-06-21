@@ -28,8 +28,10 @@ public class Projecttitle : MonoBehaviour
 
     public void SetupProjectile(Vector3 destination, Character damageDealer, EWeaponType weaponType)
     {
+        transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+        destination.y = 1f;
         this.destination = destination;
-        this.destination.y = transform.position.y;
+        //this.destination.y = transform.position.y;
 
         progress = 0;
         dealer = damageDealer;

@@ -50,13 +50,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        PauseGame();
         QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = -1;
     }
 
     private void Update()
     {
-        //if (!isPlaying) return;
+        if (!isPlaying) return;
 
         spawnTimer -= Time.deltaTime;
 
@@ -86,8 +87,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnEnemy(1));
         spawnTimer = spawnCooldown;
         isPlaying = true;
-
-        //player.OnNewGame();
+        ResumeGame();
+        player.OnNewGame();
         playerKillCount = 0;
     }
 
@@ -151,4 +152,5 @@ public class GameManager : MonoBehaviour
         data.playerName = playerName;
     }*/
 
+ 
 }
