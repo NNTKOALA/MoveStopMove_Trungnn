@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PLayerDeadState : State
 {
+    private float timer;
+
     public PLayerDeadState(Character character, Animator anim, string animString) : base(character, anim, animString)
     {
     }
@@ -11,6 +13,8 @@ public class PLayerDeadState : State
     public override void Enter()
     {
         base.Enter();
+
+        timer = 1f;
     }
 
     public override void Exit()
@@ -21,5 +25,12 @@ public class PLayerDeadState : State
     public override void Tick()
     {
         base.Tick();
+
+        timer -= Time.deltaTime;
+
+        if(timer < 0f)
+        {
+            character.OnDead();
+        }
     }
 }

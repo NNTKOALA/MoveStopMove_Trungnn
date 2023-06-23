@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ShopWeaponList : MonoBehaviour
 {
     [SerializeField] EWeaponType weaponType;
     [SerializeField] List<GameObject> modelsList = new List<GameObject>();
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject weapon;
+    [SerializeField] TextMeshProUGUI weaponName;
+    int currentWeapon = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        player.SetActive(true);
+        weapon.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,31 +35,33 @@ public class ShopWeaponList : MonoBehaviour
         modelsList[(int)weaponType].SetActive(true);
     }
 
-/*    public void ChangeNext()
+    public void ChangeNext()
     {
-        UnDisplayWeapon(currentWeapIndext);
-        UnDisplayAllWeaponMats();
-        currentWeapIndext++;
+        modelsList[currentWeapon].SetActive(false);
+        currentWeapon = ++currentWeapon % modelsList.Count;
+        modelsList[currentWeapon].SetActive(true);
 
-        if (currentWeapIndext == weaponMats.Length)
-        {
-            currentWeapIndext = 0;
-        }
-        DisplayWeapon(currentWeapIndext);
-        DisplayWeaponMats(currentWeapIndext);
+        weaponName.text = modelsList[currentWeapon].name.ToUpper();
     }
 
     public void ChangeBack()
     {
-        UnDisplayWeapon(currentWeapIndext);
-        UnDisplayAllWeaponMats();
-        currentWeapIndext--;
+        modelsList[currentWeapon].SetActive(false);
+        currentWeapon = (--currentWeapon + modelsList.Count) % modelsList.Count;
+        modelsList[currentWeapon].SetActive(true);
 
-        if (currentWeapIndext < 0)
-        {
-            currentWeapIndext = weapons.Length - 1;
-        }
-        DisplayWeapon(currentWeapIndext);
-        DisplayWeaponMats(currentWeapIndext);
-    }*/
+        weaponName.text = modelsList[currentWeapon].name.ToUpper();
+    }
+
+    public void OnEnable()
+    {
+        player.SetActive(false);
+        weapon.SetActive(true);
+    }
+
+    public void OnDisable()
+    {
+        player.SetActive(true);
+        weapon.SetActive(false);
+    }
 }

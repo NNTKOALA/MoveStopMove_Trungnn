@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : Character
@@ -76,5 +77,10 @@ public class Player : Character
         base.OnNewGame();
         transform.position = startPos;
         stateMachine.ChangeState(IdleState);
+    }
+
+    public override void OnDead()
+    {
+        UIManager.Instance.SwitchToLosePanel();
     }
 }

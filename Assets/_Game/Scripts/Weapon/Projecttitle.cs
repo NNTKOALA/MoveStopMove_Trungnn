@@ -78,7 +78,7 @@ public class Projecttitle : MonoBehaviour
             weaponModel.transform.Rotate(0f, 5f, 0f);
         }
 
-        if (progress > 1f)
+        if (progress/speed > 1f)
         {
             ReleaseSelf();
         }

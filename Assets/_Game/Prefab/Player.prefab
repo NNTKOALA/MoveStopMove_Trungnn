@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 178683668}
   m_LocalRotation: {x: -0.000000018626444, y: 0.000000114552634, z: 0.00000005401669, w: 1}
   m_LocalPosition: {x: -0, y: -0, z: -0}
-  m_LocalScale: {x: 50, y: 50, z: 50.000015}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1338147841}
@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 336096970}
   m_LocalRotation: {x: -0.000000018626444, y: 0.000000114552634, z: 0.00000005401669, w: 1}
   m_LocalPosition: {x: -0, y: -0, z: -0}
-  m_LocalScale: {x: 50, y: 50, z: 50.000015}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1338147841}
@@ -225,7 +225,7 @@ Transform:
   m_GameObject: {fileID: 434623586}
   m_LocalRotation: {x: -0.000000018626444, y: 0.000000114552634, z: 0.00000005401669, w: 1}
   m_LocalPosition: {x: -0, y: -0, z: -0}
-  m_LocalScale: {x: 50, y: 50, z: 50.000015}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1338147841}
@@ -420,14 +420,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503716128}
-  m_LocalRotation: {x: -1, y: -0.00000005820764, z: 0.00000004470347, w: 0.000000039115534}
-  m_LocalPosition: {x: -0, y: 0.49999988, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -0, y: -0.7, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1338147841}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!33 &503716132
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &613129954
 Transform:
   m_ObjectHideFlags: 0
@@ -519,7 +519,7 @@ Transform:
   m_GameObject: {fileID: 613129953}
   m_LocalRotation: {x: -1, y: -0.00000005820764, z: 0.00000004470347, w: 0.000000039115534}
   m_LocalPosition: {x: -0, y: -0, z: -0}
-  m_LocalScale: {x: 50, y: 50, z: 50.00002}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1338147841}
@@ -857,7 +857,7 @@ Transform:
   m_GameObject: {fileID: 1569666129}
   m_LocalRotation: {x: -0.000000018626444, y: 0.000000114552634, z: 0.00000005401669, w: 1}
   m_LocalPosition: {x: -0, y: -0, z: -0}
-  m_LocalScale: {x: 50, y: 50, z: 50.000015}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1338147841}
@@ -955,7 +955,7 @@ Transform:
   m_GameObject: {fileID: 1918295888}
   m_LocalRotation: {x: -0.000000018626444, y: 0.000000114552634, z: 0.00000005401669, w: 1}
   m_LocalPosition: {x: -0, y: -0, z: -0}
-  m_LocalScale: {x: 50, y: 50, z: 50.000015}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1338147841}
@@ -1053,7 +1053,7 @@ Transform:
   m_GameObject: {fileID: 2054015795}
   m_LocalRotation: {x: -0.000000018626444, y: 0.000000114552634, z: 0.00000005401669, w: 1}
   m_LocalPosition: {x: -0, y: -0, z: -0}
-  m_LocalScale: {x: 50, y: 50, z: 50.000015}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1338147841}
@@ -1193,11 +1193,11 @@ MonoBehaviour:
   characterScale: 0.05
   characterLevel: 1
   CharacterAnimation: {fileID: 8208185225079031525}
-  currentWeapon: {fileID: -7312996744385652720, guid: 7f5224a13899cd749b4a82c4bd0116c1, type: 3}
+  currentWeapon: {fileID: -594921470934998666, guid: d1a3adb3c0ee7994d8cdcb885a944664, type: 3}
   CharacterMaterial: {fileID: 6728102728254953071}
   PaintMaterial: {fileID: 2503465134496649996}
   weaponTranform: {fileID: 1338147841}
-  weaponBase: {fileID: 0}
+  weaponBase: {fileID: 1303070754645554237, guid: 7f5224a13899cd749b4a82c4bd0116c1, type: 3}
   projecttitlePrefab: {fileID: 4989565423502363666, guid: 68b4627b7f122b24283fc07ced9f7feb, type: 3}
   characterMask:
     serializedVersion: 2

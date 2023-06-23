@@ -32,7 +32,7 @@ public class BotDeadState : State
         {
             if (bot != null)
             {
-                bot.ReleaseSelf();
+                bot.OnDead();
             }
         }
     }

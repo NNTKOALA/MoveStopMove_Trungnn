@@ -42,14 +42,12 @@ public class UIManager : MonoBehaviour
 
     public void ResetGame()
     {
-        //AdsManager.Instance.LoadInterstitialAds();
-
         GameManager.Instance.ReturnAllEnemy();
         GameManager.Instance.CalculateStarByKillAmount();
-
-        SwitchToMainMenuUI();
+        
+        SwitchToMainMenuUI(); 
     }
-
+     
     public void NewGame()
     {
         SwitchToIngameUI();

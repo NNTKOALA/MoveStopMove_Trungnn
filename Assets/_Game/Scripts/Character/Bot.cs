@@ -39,7 +39,6 @@ public class Bot : Character
         DeadState = new BotDeadState(this, CharacterAnimation, "dead", this);
         WinState = new BotWinState(this, CharacterAnimation, "win");
         stateMachine.Initialize(IdleState);
-        IsPause = true;
     }
 
     // Update is called once per frame
@@ -80,6 +79,5 @@ public class Bot : Character
         base.TakeDamage(damageDealer);
         stateMachine.ChangeState(DeadState);
         base.ChangeScale(damageDealer);
-
     }
 }

@@ -172,10 +172,16 @@ public class Character : MonoBehaviour
     public void ChangeScale(Character damageDealer)
     {
         damageDealer.transform.localScale += Vector3.one * characterLevel * characterScale;
+        attackRange = 5 + characterScale * characterLevel;
     }
 
     public virtual void OnNewGame()
     {
         
+    }
+
+    public virtual void OnDead()
+    {
+        ReleaseSelf();
     }
 }
