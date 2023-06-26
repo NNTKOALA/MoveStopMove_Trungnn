@@ -29,7 +29,6 @@ public class Character : MonoBehaviour
     [SerializeField] Transform weaponBase;
     [SerializeField] Projecttitle projecttitlePrefab;
 
-
     public StateMachine stateMachine { get; protected set; }
 
     private GameObject weapon;
@@ -183,5 +182,10 @@ public class Character : MonoBehaviour
     public virtual void OnDead()
     {
         ReleaseSelf();
+    }
+
+    public virtual void SetWeapon(EWeaponType type)
+    {
+        
     }
 }

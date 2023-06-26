@@ -20,11 +20,11 @@ public class PoolManager : MonoBehaviour
         if (bot != null)
         {
 
-            Vector3 pos = new Vector3(Random.Range(-25f, 25f), 0f, Random.Range(-25f, 25f));
+            Vector3 pos = new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f));
             bot.transform.SetParent(null);
             bot.transform.position = pos;
             WaypointManager.Instance.CreateNewWaypoint(bot);
-            //bot.OnNewGame();
+            bot.OnNewGame();
         }
 
         return bot;

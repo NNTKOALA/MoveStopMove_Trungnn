@@ -25,9 +25,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int playerKillCount;
     public int PlayerKillCount => playerKillCount;
 
-    private int starCount = 0;
-    public int StarCount => starCount;
-
     private string playerName;
     public string PlayerName => playerName;
 
@@ -84,28 +81,12 @@ public class GameManager : MonoBehaviour
 
     public void StartNewGame()
     {
-        StartCoroutine(SpawnEnemy(1));
+        StartCoroutine(SpawnEnemy(initialAmountEnemy));
         spawnTimer = spawnCooldown;
         isPlaying = true;
         ResumeGame();
         player.OnNewGame();
         playerKillCount = 0;
-    }
-
-    public void CalculateStarByKillAmount()
-    {
-        if (playerKillCount > 0 && playerKillCount < 30)
-        {
-            starCount += 1;
-        }
-        else if (playerKillCount >= 30 && playerKillCount < 60)
-        {
-            starCount += 2;
-        }
-        else if (playerKillCount >= 60)
-        {
-            starCount += 3;
-        }
     }
 
     public void IncreaseKillCount()
@@ -140,17 +121,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-/*    public void LoadData(GameData data)
-    {
-        starCount = data.starAmt;
-        playerName = data.playerName;
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        data.starAmt = starCount;
-        data.playerName = playerName;
-    }*/
-
- 
 }

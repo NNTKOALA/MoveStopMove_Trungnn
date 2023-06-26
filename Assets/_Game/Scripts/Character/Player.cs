@@ -6,6 +6,9 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] FloatingJoystick variableJoystick;
+    [SerializeField] List<Weapon> weapons;
+
+    private int weaponPosition;
 
     public Rigidbody rb;
 
@@ -32,7 +35,7 @@ public class Player : Character
         WinState = new PlayerWinState(this, CharacterAnimation, "win"); 
 
         stateMachine.Initialize(IdleState);
-
+        weaponPosition = 0;
 
     }
 
@@ -82,5 +85,16 @@ public class Player : Character
     public override void OnDead()
     {
         UIManager.Instance.SwitchToLosePanel();
+    }
+
+    public override void SetWeapon(EWeaponType type)
+    {
+        base.SetWeapon(type);
+
+        weapons[weaponPosition].gameObject.SetActive(false);
+
+        weaponPosition = (int)type;
+        weapons[weaponPosition].gameObject.SetActive(true);
+        currentWeapon = weapons[weaponPosition];
     }
 }

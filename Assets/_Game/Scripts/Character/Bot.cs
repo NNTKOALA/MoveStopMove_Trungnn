@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
@@ -6,6 +7,13 @@ using UnityEngine.AI;
 
 public class Bot : Character
 {
+    public static event EventHandler<OnAnyEnemyDeathArgs> onAnyEnemyDeath;
+    public class OnAnyEnemyDeathArgs : EventArgs
+    {
+        public Bot bot;
+        public Character damageDealer;
+    }
+
     [SerializeField] float patrolRadius = 7f;
     [SerializeField] private Transform attacker;
     public float PatrolRadius => patrolRadius;

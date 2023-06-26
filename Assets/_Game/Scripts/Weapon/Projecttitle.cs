@@ -51,6 +51,7 @@ public class Projecttitle : MonoBehaviour
         if (weaponType == EWeaponType.Arrow)
         {
             needSpin = false;
+            transform.LookAt(destination);
         }
 
         SetupVisualModel();

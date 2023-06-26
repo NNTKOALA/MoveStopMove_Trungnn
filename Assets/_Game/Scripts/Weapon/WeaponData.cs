@@ -13,9 +13,8 @@ public class WeaponData : ScriptableObject
     public int damage;
     public float attackRange;
 
-/*    [Space, Header("Info for Shop")]
+    [Space, Header("Info for Shop")]
     public int price;
-    public Sprite weaponIcon;*/
 
     private void OnValidate()
     {

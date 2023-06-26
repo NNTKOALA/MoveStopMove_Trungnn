@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject winPanel;
     [SerializeField] GameObject losePanel;
+    [SerializeField] TextMeshProUGUI aliveCount;
+    [SerializeField] TextMeshProUGUI moneyCount;
 
 
     public void Awake()
@@ -43,7 +46,6 @@ public class UIManager : MonoBehaviour
     public void ResetGame()
     {
         GameManager.Instance.ReturnAllEnemy();
-        GameManager.Instance.CalculateStarByKillAmount();
         
         SwitchToMainMenuUI(); 
     }
