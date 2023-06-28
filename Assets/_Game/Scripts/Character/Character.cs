@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] List<Weapon> weapons;
+
+    protected int weaponPosition;
+
     public static event EventHandler<OnAnyCharacterSpawnProjectileArgs> onAnyCharacterSpawnProjectile;
     public class OnAnyCharacterSpawnProjectileArgs : EventArgs
     {
@@ -36,6 +40,7 @@ public class Character : MonoBehaviour
     public float attackRange = 5;
     public List<Material> listClothesMaterials;
     public AnimationType currentAnimType = AnimationType.Idle;
+    public bool isDead { get; set; } = false;
 
     protected CharacterPool pool;
     public CharacterPool Pool
@@ -105,6 +110,10 @@ public class Character : MonoBehaviour
                 {
                     continue;
                 }
+                if (enemy.GetComponent<Character>().isDead)
+                {
+                    continue;
+                }
                 float distance = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distance < minimumDistance)
                 {
@@ -123,25 +132,9 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void ThrowWeapon()
-    {
-        //Debug.Log("ThrowWeapon");
-        //GameObject weaponObject = GameObject.Instantiate(weapon);
-        //weaponObject.transform.position = weaponBase.transform.position;
-        //weaponObject.transform.rotation = weaponBase.transform.rotation;
-        ///*        weaponObject.GetComponent<WeaponController>().Shoot(targetContro);*/
-
-        //weaponBase.gameObject.SetActive(false);
-    }
-
     public void LookAtTarget(Vector3 target)
     {
         transform.LookAt(target);
-    }
-
-    public void EndAttack()
-    {
-
     }
 
     internal void ModifyStatsByWeapon(float attackRange, int damage)
@@ -156,6 +149,8 @@ public class Character : MonoBehaviour
 
     internal void SpawnProjectile(Vector3 position)
     {
+        LookAtTarget(position);
+
         onAnyCharacterSpawnProjectile?.Invoke(this, new OnAnyCharacterSpawnProjectileArgs
         {
             destination = position,
@@ -186,6 +181,10 @@ public class Character : MonoBehaviour
 
     public virtual void SetWeapon(EWeaponType type)
     {
-        
+        weapons[weaponPosition].gameObject.SetActive(false);
+
+        weaponPosition = (int)type;
+        weapons[weaponPosition].gameObject.SetActive(true);
+        currentWeapon = weapons[weaponPosition];
     }
 }

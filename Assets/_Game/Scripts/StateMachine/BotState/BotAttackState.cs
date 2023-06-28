@@ -25,7 +25,6 @@ public class BotAttackState : State
         else
         {
             timer = 1.1f;
-            bot.ThrowWeapon();
         }
     }
 

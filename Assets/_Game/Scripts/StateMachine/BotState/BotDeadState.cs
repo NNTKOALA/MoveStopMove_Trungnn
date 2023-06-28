@@ -15,6 +15,7 @@ public class BotDeadState : State
     public override void Enter()
     {
         base.Enter();
+        bot.isDead = true;
     }
 
     public override void Exit()

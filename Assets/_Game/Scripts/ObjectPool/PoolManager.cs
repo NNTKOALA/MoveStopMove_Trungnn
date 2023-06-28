@@ -16,6 +16,7 @@ public class PoolManager : MonoBehaviour
     private Bot GameManager_onEnemySpawn()
     {
         Bot bot = characterPool.GetPooledObject() as Bot;
+        bot.isDead = false;
 
         if (bot != null)
         {

@@ -46,8 +46,6 @@ public class UIManager : MonoBehaviour
     public void ResetGame()
     {
         GameManager.Instance.ReturnAllEnemy();
-        
-        SwitchToMainMenuUI(); 
     }
      
     public void NewGame()
@@ -78,6 +76,11 @@ public class UIManager : MonoBehaviour
     {
         SwitchTo(mainMenuUI);
         UpdateInfoOnScreen();
+        UpdateMoney(ShopManager.Instance.Money);
+    }
+    private void UpdateMoney(int amt)
+    {
+        moneyCount.text = amt.ToString();
     }
 
     public void UpdateInfoOnScreen()

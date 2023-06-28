@@ -39,6 +39,8 @@ public class Bot : Character
     protected override void Start()
     {
         base.Start();
+        int weaponRd = UnityEngine.Random.Range(0, 11);
+        SetWeapon((EWeaponType)weaponRd);
         startPos = transform.position;
         stateMachine = new StateMachine();
         IdleState = new BotIdleState(this, CharacterAnimation, "idle", this);
@@ -77,9 +79,9 @@ public class Bot : Character
 
     public override void ReleaseSelf()
     {
+        stateMachine.ChangeState(IdleState);
         base.ReleaseSelf();
-
-        //IndicatorManager.Instance.RemoveIndicator(this);
+        WaypointManager.Instance.RemoveIndicator(this);
     }
 
     public override void TakeDamage(Character damageDealer)
@@ -88,4 +90,5 @@ public class Bot : Character
         stateMachine.ChangeState(DeadState);
         base.ChangeScale(damageDealer);
     }
+
 }

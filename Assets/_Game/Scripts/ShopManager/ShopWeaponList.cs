@@ -12,6 +12,7 @@ public class ShopWeaponList : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject weapon;
     [SerializeField] TextMeshProUGUI weaponName;
+    [SerializeField] Text weaponPrice;
     [SerializeField] Button buyButton;
     [SerializeField] Button useButton;
     int currentWeapon = 0;
@@ -46,6 +47,7 @@ public class ShopWeaponList : MonoBehaviour
         modelsList[currentWeapon].SetActive(true);
 
         weaponName.text = modelsList[currentWeapon].name.ToUpper();
+        weaponPrice.text = modelsList[currentWeapon].GetComponent<Weapon>().getWeaponData().price.ToString();
 
         TestBuyWeapon();
     }
@@ -57,14 +59,13 @@ public class ShopWeaponList : MonoBehaviour
         modelsList[currentWeapon].SetActive(true);
 
         weaponName.text = modelsList[currentWeapon].name.ToUpper();
+        weaponPrice.text = modelsList[currentWeapon].GetComponent<Weapon>().getWeaponData().price.ToString();
 
         TestBuyWeapon();
     }
 
     private void TestBuyWeapon()
     {
-        Debug.Log(ShopManager.Instance.CheckHasPurchasedWeapon(weaponDataList[currentWeapon]));
-
         if (ShopManager.Instance.CheckHasPurchasedWeapon(weaponDataList[currentWeapon]))
         {
             useButton.gameObject.SetActive(true);

@@ -17,3 +17,4 @@ MonoBehaviour:
   weaponModel: {fileID: 100000, guid: 6083ff9012eefa348b00b8c543f1a742, type: 3}
   damage: 1
   attackRange: 5
+  price: 200

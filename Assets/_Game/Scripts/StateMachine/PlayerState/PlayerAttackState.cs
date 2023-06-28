@@ -26,7 +26,6 @@ public class PlayerAttackState : State
         else
         {
             timer = 1.1f;
-            player.ThrowWeapon();
         }
     }
 
