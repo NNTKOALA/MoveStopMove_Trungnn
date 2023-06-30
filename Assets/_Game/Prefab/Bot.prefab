@@ -229,6 +229,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7062027530709743264}
+  - {fileID: 1647856134303196069}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -296,6 +297,7 @@ MonoBehaviour:
   weaponTranform: {fileID: 3234467446810020223}
   weaponBase: {fileID: 3187745974074018128}
   projecttitlePrefab: {fileID: 4989565423502363666, guid: 68b4627b7f122b24283fc07ced9f7feb, type: 3}
+  indigatorTranform: {fileID: 1647856134303196069}
   characterMask:
     serializedVersion: 2
     m_Bits: 64
@@ -312,7 +314,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5d62649344f2d294c8c67487e38c51d3, type: 2}
   currentAnimType: 0
   patrolRadius: 7
-  attacker: {fileID: 0}
   agent: {fileID: 1026395717}
   rb: {fileID: 2845123027715096874}
 --- !u!195 &1026395717
@@ -534,6 +535,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 3682462975df97f4a980db5e2450f9c7, type: 2}
+--- !u!1 &3313778176973935083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1647856134303196069}
+  m_Layer: 6
+  m_Name: Indigator Tranform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1647856134303196069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3313778176973935083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2845123027715096885}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3894689021051743955
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,6 @@ public class UIManager : MonoBehaviour
     {
 
         SwitchToMainMenuUI();
-        DeactivateModelView();
     }
 
     public void SetPlayerName(string playerName)
@@ -75,18 +74,11 @@ public class UIManager : MonoBehaviour
     public void SwitchToMainMenuUI()
     {
         SwitchTo(mainMenuUI);
-        UpdateInfoOnScreen();
         UpdateMoney(ShopManager.Instance.Money);
     }
-    private void UpdateMoney(int amt)
+    public void UpdateMoney(int amt)
     {
         moneyCount.text = amt.ToString();
-    }
-
-    public void UpdateInfoOnScreen()
-    {
-        //currencyText.text = ShopSystem.Instance.Money.ToString();
-        //starAmtText.text = GameManager.Instance.StarCount.ToString();
     }
 
     public void SwitchToIngameUI()
@@ -112,40 +104,10 @@ public class UIManager : MonoBehaviour
     public void SwitchToLosePanel()
     {
         SwitchTo(losePanel);
-        //SetUpLosePanel();
     }
-
-/*    public void SetUpLosePanel()
-    {
-        int killCount = GameManager.Instance.PlayerKillCount;
-        Sprite starSprite = oneStar;
-        if (killCount > 30)
-        {
-            starSprite = twoStar;
-        }
-        if (killCount > 60)
-        {
-            starSprite = threeStar;
-        }
-
-        starImage.sprite = starSprite;
-    }*/
 
     public void OpenWeaponShopUI()
     {
         weaponShopUI.SetActive(true);
-        //weaponShopView.SetActive(true);
-    }
-
-    public void OpenClothesShopUI()
-    {
-        clothesShopUI.SetActive(true);
-        //clothesShopView.SetActive(true);
-    }
-
-    public void DeactivateModelView()
-    {
-        //weaponShopView.SetActive(false);
-        //clothesShopView.SetActive(false);
     }
 }

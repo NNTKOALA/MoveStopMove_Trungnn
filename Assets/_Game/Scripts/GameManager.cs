@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ using UnityEngine.Playables;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public List<GameObject> levelPrefab;
+    public int currentLevel;
+    private GameObject currentLevelInstance;
 
     public delegate Bot OnSpawnEnemy();
     public static event OnSpawnEnemy onEnemySpawn;
@@ -47,6 +51,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        currentLevel = 0;
+        currentLevelInstance = Instantiate(levelPrefab[currentLevel]);
         PauseGame();
         QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = -1;
@@ -92,6 +98,17 @@ public class GameManager : MonoBehaviour
     public void IncreaseKillCount()
     {
         playerKillCount++;
+        if (playerKillCount >= 10)
+        {
+            WinGame();
+        }
+    }
+
+    private void WinGame()
+    {
+        UIManager.Instance.SwitchToWinPanel();
+        ReturnAllEnemy();
+        PauseGame();
     }
 
     public void PauseGame()
@@ -121,4 +138,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void NextLevel()
+    {
+        Debug.Log("Next Level");
+        currentLevel = ++currentLevel % levelPrefab.Count;
+        Destroy(currentLevelInstance);
+        currentLevelInstance = Instantiate(levelPrefab[currentLevel]);
+        StartNewGame();
+        UIManager.Instance.SwitchToIngameUI();
+    }
 }

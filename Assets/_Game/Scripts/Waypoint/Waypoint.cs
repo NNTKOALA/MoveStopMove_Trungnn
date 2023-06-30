@@ -59,8 +59,8 @@ public class Waypoint : MonoBehaviour
         img.transform.Rotate(0f, 0f, dir.x > 0 ? angleToRotate : -angleToRotate);
     }
 
-    public void SetupWaypoint(Character character)
+    public void SetupWaypoint(Transform waypoint)
     {
-        target = character.transform;
+        target = waypoint;
     }
 }

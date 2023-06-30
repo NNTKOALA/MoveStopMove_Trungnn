@@ -1188,6 +1188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddb41343d05ccf4a99f81b9a79dc0c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons: []
   targetInRange: []
   moveSpeed: 5
   characterScale: 0.05
@@ -1199,6 +1200,7 @@ MonoBehaviour:
   weaponTranform: {fileID: 1338147841}
   weaponBase: {fileID: 1303070754645554237, guid: 7f5224a13899cd749b4a82c4bd0116c1, type: 3}
   projecttitlePrefab: {fileID: 4989565423502363666, guid: 68b4627b7f122b24283fc07ced9f7feb, type: 3}
+  indigatorTranform: {fileID: 0}
   characterMask:
     serializedVersion: 2
     m_Bits: 64

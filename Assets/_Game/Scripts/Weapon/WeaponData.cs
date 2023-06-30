@@ -20,6 +20,11 @@ public class WeaponData : ScriptableObject
     {
         weaponModel = weaponModelList.GetModelsByType(weaponType);
     }
+
+    public static string GetWeaponKey(WeaponData weaponData)
+    {
+        return weaponData.weaponType.ToString();
+    }
 }
 public enum EWeaponType
 {

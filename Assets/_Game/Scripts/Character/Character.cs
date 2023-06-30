@@ -33,6 +33,7 @@ public class Character : MonoBehaviour
     [SerializeField] Transform weaponBase;
     [SerializeField] Projecttitle projecttitlePrefab;
 
+    public Transform indigatorTranform;
     public StateMachine stateMachine { get; protected set; }
 
     private GameObject weapon;
@@ -101,7 +102,6 @@ public class Character : MonoBehaviour
         }
         else 
         {
-            nearestEnemy = null;
             float minimumDistance = Mathf.Infinity;
 
             foreach (Collider enemy in targetInRange)

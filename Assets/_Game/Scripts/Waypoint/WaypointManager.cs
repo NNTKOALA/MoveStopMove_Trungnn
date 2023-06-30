@@ -27,7 +27,7 @@ public class WaypointManager : MonoBehaviour
         if (waypointDict.ContainsKey(character)) return;
 
         Waypoint instance = Instantiate(waypointPrefab, transform);
-        instance.SetupWaypoint(character);
+        instance.SetupWaypoint(character.indigatorTranform);
         waypointDict.Add(character, instance);
 
     }

@@ -29,7 +29,7 @@ public class BotDeadState : State
 
         timer -= Time.deltaTime;
 
-        if (timer < 0f)
+        if (timer < 0.5f)
         {
             if (bot != null)
             {

@@ -20,8 +20,7 @@ public class ShopWeaponList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player.SetActive(true);
-        weapon.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -82,6 +81,10 @@ public class ShopWeaponList : MonoBehaviour
     {
         player.SetActive(false);
         weapon.SetActive(true);
+        modelsList[currentWeapon].SetActive(true);
+
+        weaponName.text = modelsList[currentWeapon].name.ToUpper();
+        weaponPrice.text = modelsList[currentWeapon].GetComponent<Weapon>().getWeaponData().price.ToString();
     }
 
     public void OnDisable()

@@ -15,7 +15,6 @@ public class Bot : Character
     }
 
     [SerializeField] float patrolRadius = 7f;
-    [SerializeField] private Transform attacker;
     public float PatrolRadius => patrolRadius;
     public NavMeshAgent agent;
     public Rigidbody rb;
@@ -89,6 +88,7 @@ public class Bot : Character
         base.TakeDamage(damageDealer);
         stateMachine.ChangeState(DeadState);
         base.ChangeScale(damageDealer);
+        onAnyEnemyDeath?.Invoke(this, new OnAnyEnemyDeathArgs { bot=this, damageDealer = damageDealer });
     }
 
 }

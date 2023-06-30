@@ -14,45 +14,12 @@ public class ShopManager : MonoBehaviour
         public WeaponData weaponData;
     }
 
-
-/*    public event EventHandler<OnEquipSkinArgs> onEquipSkin;
-    public class OnEquipSkinArgs : EventArgs
-    {
-        public SkinData skinData;
-    }*/
-
     [Space, Header("Player Currency")]
     [SerializeField] int money = 10000;
     public int Money => money;
 
-    //Weapon List
-    [SerializeField] List<Weapon> sellWeaponList;
-    public List<WeaponData> GetSellWeaponList()
-    {
-        List<WeaponData> sellList = new List<WeaponData>();
-
-        foreach (var weapon in sellWeaponList)
-        {
-            if (!purchasedWeaponList.Contains(weapon.getWeaponData()))
-            {
-                sellList.Add(weapon.getWeaponData());
-            }
-        }
-
-        return sellList;
-    }
-
-    //Skin List
-/*    [SerializeField] List<SkinData> sellSkinDataList;
-    public List<SkinData> GetSellSkinList() => sellSkinDataList;*/
-
-
     private List<WeaponData> purchasedWeaponList = new List<WeaponData>();
-    //private List<SkinData> purchasedSkinList = new List<SkinData>();
-
-    //for save system
-    private List<EWeaponType> weaponSaveList = new List<EWeaponType>();
-    private List<int> skinSaveList = new List<int>();
+    [SerializeField] List<WeaponData> checkList;
 
     private void Awake()
     {
@@ -69,6 +36,16 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         Bot.onAnyEnemyDeath += Enemy_onAnyEnemyDeath;
+        money = PlayerPrefs.GetInt(StringData.moneyKey, 100);
+
+        for (int i = 0; i < 11; i++) 
+        {
+            int check = PlayerPrefs.GetInt(WeaponData.GetWeaponKey(checkList[i]), 0);
+            if (check > 0)
+            {
+                purchasedWeaponList.Add(checkList[i]);
+            }
+        }
     }
 
     private void Enemy_onAnyEnemyDeath(object sender, Bot.OnAnyEnemyDeathArgs e)
@@ -93,7 +70,8 @@ public class ShopManager : MonoBehaviour
         if (money >= price)
         {
             money -= price;
-            UIManager.Instance.UpdateInfoOnScreen();
+            UIManager.Instance.UpdateMoney(money);
+            PlayerPrefs.SetInt(StringData.moneyKey, money);
             return true;
         }
 
@@ -105,34 +83,13 @@ public class ShopManager : MonoBehaviour
         if (purchasedWeaponList.Contains(weaponData)) return;
 
         purchasedWeaponList.Add(weaponData);
-
+        PlayerPrefs.SetInt(WeaponData.GetWeaponKey(weaponData), 1);
     }
 
     public void EquipWeapon(WeaponData weaponData)
     {
         onEquipWeapon?.Invoke(this, new OnEquipWeaponArgs { weaponData = weaponData });
     }
-
-/*    public void AddSkinToPlayer(SkinData skinData)
-    {
-        if (purchasedSkinList.Contains(skinData)) return;
-
-        purchasedSkinList.Add(skinData);
-
-    }
-
-    public void EquipSkin(SkinData skinData)
-    {
-        onEquipSkin?.Invoke(this, new OnEquipSkinArgs { skinData = skinData });
-    }*/
-
-
-/*        data.skinIdList = new List<int>();
-        foreach (SkinData skinData in purchasedSkinList)
-        {
-            data.skinIdList.Add(skinData.itemId);
-        }*/
-   
 
     public bool CheckHasPurchasedWeapon(WeaponData data)
     {
@@ -145,14 +102,4 @@ public class ShopManager : MonoBehaviour
         return false;
     }
 
-/*    public bool CheckHasPurchasedSkin(SkinData data)
-    {
-        foreach (var value in skinSaveList)
-        {
-            if (data.itemId == value)
-                return true;
-        }
-
-        return false;
-    }*/
 }
