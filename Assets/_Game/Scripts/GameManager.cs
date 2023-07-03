@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Bot> enemiesOnScreen = new List<Bot>();
     private float spawnTimer;
     private bool isPlaying;
+    private Coroutine spawnBot;
 
     [SerializeField] private int playerKillCount;
     public int PlayerKillCount => playerKillCount;
@@ -60,7 +61,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!isPlaying) return;
+        if (!isPlaying)
+        {
+            if (spawnBot != null)
+            {
+                StopCoroutine(spawnBot);
+                spawnBot = null;
+            }
+            return;
+        }
 
         spawnTimer -= Time.deltaTime;
 
@@ -68,7 +77,7 @@ public class GameManager : MonoBehaviour
         {
             spawnTimer = float.MaxValue;
             int randomAmt = UnityEngine.Random.Range(minAmountPerSpawn, maxAmountPerSpawn);
-            StartCoroutine(SpawnEnemy(randomAmt));
+            spawnBot = StartCoroutine(SpawnEnemy(randomAmt));
         }
     }
 

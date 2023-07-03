@@ -176,6 +176,7 @@ public class Character : MonoBehaviour
 
     public virtual void OnDead()
     {
+        isDead = true;
         ReleaseSelf();
     }
 

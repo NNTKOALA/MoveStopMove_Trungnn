@@ -33,12 +33,17 @@ public class Player : Character
 
         stateMachine.Initialize(IdleState);
         weaponPosition = 0;
-
+        isDead = false;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        if (isDead)
+        {
+            MoveDirection = Vector2.zero;
+            return;
+        }
         base.Update();
 
         if (Input.GetMouseButton(0))

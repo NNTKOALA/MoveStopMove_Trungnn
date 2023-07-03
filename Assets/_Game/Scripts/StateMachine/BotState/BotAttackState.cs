@@ -38,14 +38,19 @@ public class BotAttackState : State
         base.Tick();
 
         timer -= Time.deltaTime;
+        if(target != null)
+        {
+            bot.LookAtTarget(target.transform.position);
+        }
+
         if (timer < 0f)
         {
             bot.stateMachine.ChangeState(bot.IdleState);
         }
 
-        if (bot.MoveDirection.sqrMagnitude > 0.01f)
-        {
-            bot.stateMachine.ChangeState(bot.RunState);
-        }
+        //if (bot.MoveDirection.sqrMagnitude > 0.1f)
+        //{
+        //    bot.stateMachine.ChangeState(bot.RunState);
+        //}
     }
 }

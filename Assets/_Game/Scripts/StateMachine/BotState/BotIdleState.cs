@@ -5,6 +5,7 @@ using UnityEngine;
 public class BotIdleState : State
 {
     private Bot bot;
+    private float timer;
 
     public BotIdleState(Character character, Animator anim, string animString, Bot bot) : base(character, anim, animString)
     {
@@ -14,6 +15,7 @@ public class BotIdleState : State
     public override void Enter()
     {
         base.Enter();
+        timer = Random.Range(0.5f, 1.5f);
     }
 
     public override void Exit()
@@ -24,14 +26,17 @@ public class BotIdleState : State
     public override void Tick()
     {
         base.Tick();
-
-        if (bot.FindClosetEnemy() != null)
+        timer -= Time.deltaTime;
+        if (timer < 0)
         {
-            bot.stateMachine.ChangeState(bot.AttackState);
-        }
-        else
-        {
-            bot.stateMachine.ChangeState(bot.RunState);
+            if (bot.FindClosetEnemy() != null)
+            {
+                bot.stateMachine.ChangeState(bot.AttackState);
+            }
+            else
+            {
+                bot.stateMachine.ChangeState(bot.RunState);
+            }
         }
     }
 }
